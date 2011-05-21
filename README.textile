@@ -15,7 +15,7 @@ Currently I know of several types of intriguing numerical properties:
 
 Often these properies show by dividing resulting numbers by 19.  In sura 74 the 30th verse reads "Over it are nineteen", many see this as a hint that nineteen is of special significance to the book.  We can see 1 as the first and 9 as the last number of a decimal system, thereby 1-9 to a decimal system is like alpha-omega to he Greek alphabet.  In the New Testament's book of revelation we find several references to this conjunction of alpha and omega.
 
-I do not subscribe to all of the claims people make about numeric analyses of the Qur'an.  I do feel some of properties are miraculous, yet I found them often hard to reproduce or ambiguously formulated.  My goal for this project is to make it extremely easy to replicate the analyses by anyone with basic programming skills.  Besides that I think programming languages --being extremely formal compared to human laguages-- are particularly suitable to formulate the analyses.
+I do not subscribe to all of the claims people make about numeric analyses of the Qur'an.  I do feel some of properties are miraculous, yet I found them often hard to reproduce or ambiguously formulated.  My goal for this project is to make it extremely easy to replicate the analyses by anyone with basic programming skills.  Besides that I think programming languages -- being extremely formal compared to human laguages -- are particularly suitable to formulate the analyses.
 
 
 h2. DISCLAIMER
