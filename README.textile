@@ -4,23 +4,23 @@ For the benefit of myself and universe at large I have studied a growing number 
 
 Among them Lau Zi's Dao De Jing, Sakyamuni's teachings, Hui Neng's Platform suttra and -- as the title of this project insinuates -- the Qur'an.
 
-As non of these texts are originally in English or Dutch I depend on translations, that are as a by-product interpretations as well.  While being the original directly would be better (removing one filter of interpretation from the message), I do console my self with the fact that the most influential interpretation happens when the reader tries to understand what he reads.  I believe word and concepts are relative: they have differnt meanings depending on the time and the person you ask.  The True meaning, as I believe, is not decyphered by a brain but felt in ones heart.  In other words, I believe that the True meaning can not, never ever be captured in words.
+As non of these texts are originally in English or Dutch I depend on translations, that are as a by-product interpretations as well.  While being able to read the original directly would be better, as it removes one filter of interpretation from the message, I do console my self with the fact that the most influential interpretation happens when the reader tries to understand what he reads.  I believe words and concepts are relative: they have different meanings depending on the time and the person you ask.  I believe he True meaning of spiritual texts is not decyphered by a brain but felt in ones heart.  In other words, I believe that the True meaning can not, never ever be fully or enternally captured in words.
 
-Enough introduction.  While studying several Qur'an translations/interpretations I learnt about some intriguing numerical properties of the book.  I do not believe these properties change the meaning much or are prerequisite knowledge for anyone studying its message for the purpose of spiritual awakening.  Yet to me these properties where intriguing enough start an effort to replicate the claims made.
+Enough background.  While studying several Qur'an translations/interpretations I learnt about some intriguing numerical properties of the book.  I do not believe these properties change the meaning much or are prerequisite knowledge for anyone studying its message for the purpose of spiritual awakening.  Yet to me these properties where intriguing enough start an effort to replicate them.
 
-Currently I know of several types of intriguing nemerical properties:
+Currently I know of several types of intriguing numerical properties:
  * word counts
  * letter counts
  * numerical values of words
 
-Often these properies show by dividing resulting numbers by 19.  In sura 74 the 30th verse reads "Over it are nineteen", many see this as a hint that nineteen is of special significan to the book.  We can see 1 as the first and nine as the last number of a decimal system, thereby 1-9 to a decimal system is like alpha-omega to he Greek alphabet.  In the New Testament's book of revelation we find several references to this conjunction of alpha and omega.
+Often these properies show by dividing resulting numbers by 19.  In sura 74 the 30th verse reads "Over it are nineteen", many see this as a hint that nineteen is of special significance to the book.  We can see 1 as the first and 9 as the last number of a decimal system, thereby 1-9 to a decimal system is like alpha-omega to he Greek alphabet.  In the New Testament's book of revelation we find several references to this conjunction of alpha and omega.
 
-I do not subscribe to all of the claims people make about numeric analysis of the Qur'an. I do feel some of properties are miraculous, though often hard to reproduce or ambiguously formulated.  My goal of this project is to make it extremely easy to replicate the analysis by anyone with basic programming skills.  Besides that I think programming languages -- being extremely formal compared to human laguages -- are particularly good way to formulate the analysis.
+I do not subscribe to all of the claims people make about numeric analyses of the Qur'an.  I do feel some of properties are miraculous, yet I found them often hard to reproduce or ambiguously formulated.  My goal for this project is to make it extremely easy to replicate the analyses by anyone with basic programming skills.  Besides that I think programming languages --being extremely formal compared to human laguages-- are particularly suitable to formulate the analyses.
 
 
 h2. DISCLAIMER
 
-I, Cies Breijs, am working on this project for personal reasons and not as part of any organization.  It is simply my effort to replicate claims that intrigue me in a way that whould allow others to replicate them as easy as running a piece of software, and study their procedures as expressed in a formal language.
+I, Cies Breijs, am working on this project for personal reasons and not as part of any organization.  It is simply my effort to replicate claims that intrigue me in a way that whould allow others to replicate them as easy as running a piece of software, and allow the study of their procedures in a formal language.
 
 
 h2. TODO
