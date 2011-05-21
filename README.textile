@@ -1,0 +1,48 @@
+h1. Analysis of the Qur'an
+
+For the benefit of myself and universe at large I have studied a growing number of old 'spiritual' texts.
+
+Among them Lau Zi's Dao De Jing, Sakyamuni's teachings, Hui Neng's Platform suttra and -- as the title of this project insinuates -- the Qur'an.
+
+As non of these texts are originally in English or Dutch I depend on translations, that are as a by-product interpretations as well.  While being the original directly would be better (removing one filter of interpretation from the message), I do console my self with the fact that the most influential interpretation happens when the reader tries to understand what he reads.  I believe word and concepts are relative: they have differnt meanings depending on the time and the person you ask.  The True meaning, as I believe, is not decyphered by a brain but felt in ones heart.  In other words, I believe that the True meaning can not, never ever be captured in words.
+
+Enough introduction.  While studying several Qur'an translations/interpretations I learnt about some intriguing numerical properties of the book.  I do not believe these properties change the meaning much or are prerequisite knowledge for anyone studying its message for the purpose of spiritual awakening.  Yet to me these properties where intriguing enough start an effort to replicate the claims made.
+
+Currently I know of several types of intriguing nemerical properties:
+ * word counts
+ * letter counts
+ * numerical values of words
+
+Often these properies show by dividing resulting numbers by 19.  In sura 74 the 30th verse reads "Over it are nineteen", many see this as a hint that nineteen is of special significan to the book.  We can see 1 as the first and nine as the last number of a decimal system, thereby 1-9 to a decimal system is like alpha-omega to he Greek alphabet.  In the New Testament's book of revelation we find several references to this conjunction of alpha and omega.
+
+I do not subscribe to all of the claims people make about numeric analysis of the Qur'an. I do feel some of properties are miraculous, though often hard to reproduce or ambiguously formulated.  My goal of this project is to make it extremely easy to replicate the analysis by anyone with basic programming skills.  Besides that I think programming languages -- being extremely formal compared to human laguages -- are particularly good way to formulate the analysis.
+
+
+h2. DISCLAIMER
+
+I, Cies Breijs, am working on this project for personal reasons and not as part of any organization.  It is simply my effort to replicate claims that intrigue me in a way that whould allow others to replicate them as easy as running a piece of software, and study their procedures as expressed in a formal language.
+
+
+h2. TODO
+
+ * send out requests for code of previous attempts to write software replicating the analyses
+ * seek help form those who went before me
+ * add replications for more claims (curretly this project contains proof-of-concepts at best)
+ * eventually move the code to RSpec for better readability and nice output
+
+
+h2. TADA
+
+ * wrote a README to elaborate on the intention of my efforts
+ * simple 'initial' letter count as first found by Khalifa Rashad has been implemented, but results in different counts
+ * couting for the word 'Allah' has been implemented, resulting in different counts then found in literature
+ * start a github project, sharing my efforts with a greater audience
+
+
+h2. LICENSE
+
+As I cannot conceive any derived products from this software I believe the best way to license it is by simply giving up my copyrights.  In other words: I choose to release the source code of this project to the public domain.
+
+The copy of the Qur'an text you find in this project is from "tanzil.net":http://www.tanzil.net it contains a copyright notice at the end of the file and is released under the Creative Commons No-Derivatives license version 3.0.
+
+The text of this README you are reading is released under the Creative Common Attribution Share-Alike license version 3.0.
