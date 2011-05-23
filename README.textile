@@ -29,6 +29,16 @@ h2. TODO
  * seek help form those who went before me
  * add replications for more claims (curretly this project contains proof-of-concepts at best)
  * eventually move the code to RSpec for better readability and nice output
+ * work towards a bunch of classes that can be used from the IRB) console
+
+
+h3. TODO: TOWARDS A CONSOLE
+
+ * a Quran class work be nice, it should be possible to conviently query and search through it.
+ * queries could return a query object that can then be formatted to needs (w/-or-w/o words/sura/aya/etc.)
+ * some extentions to the String class would make our life easier
+ * maybe a class that colors numbers green if they are a multiple of 19
+ * a method to romanize arabic: it's so hard to read for me (alternating LtoR/RtoL)
 
 
 h2. TADA
