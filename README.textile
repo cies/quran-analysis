@@ -39,7 +39,7 @@ h3. TODO: TOWARDS A CONSOLE
  * some extentions to the String class would make our life easier
  * maybe a class that colors numbers green if they are a multiple of 19
  * a method to romanize arabic: it's so hard to read for me (alternating LtoR/RtoL)
-
+ * move all extentions into a +core_ext+ folder (refer to +awesome_print+)
 
 h2. TADA
 
