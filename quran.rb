@@ -9,7 +9,7 @@
 require "./arabic.rb"
 
 class Quran
-  DEFAULT_QURAN_FILE = 'quran-yuksel-satinized-formatted.txt'
+  DEFAULT_QURAN_FILE = 'yuksel-transformed.txt'
 
   # Letter sequences and the suras that they occure in front of.
   INITIALS_AND_SURAS = {
@@ -37,6 +37,7 @@ class Quran
   def initialize(file_name=DEFAULT_QURAN_FILE)
     @file_name = file_name
     @quran = Hash[(1..114).to_a.map{|e| e = [e, {}]}]  # { 1=>{}, 2=>{}, ..., 114=>{} }
+    puts "Cannot read '#{file_name}'. Exitting." and exit unless File.stat(file_name).readable?
     open(file_name).each_line do |l|
       if l.count('|') == 2
         sura, aya, txt = l.split('|')

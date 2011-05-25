@@ -47,7 +47,8 @@ h2. TADA
  * simple 'initial' letter count as first found by Khalifa Rashad has been implemented, but results in different counts
  * couting for the word 'Allah' has been implemented, resulting in different counts then found in literature
  * start a github project, sharing my efforts with a greater audience
-
+ * added scripts that transform the original Quran texts (currently only Edip Yuksel's and the cleanest version of the tanzil.net texts are considered)
+ *
 
 h2. LICENSE
 
