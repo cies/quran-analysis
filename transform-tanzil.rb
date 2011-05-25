@@ -48,4 +48,10 @@ open(ARGV[0]).each_line do |l|
 
 end
 
+# Remove aya 128 and 129 from sura 9
+# The reasons for this are outlined Edip Yuksel's book 'Nineteen'
+# in chapter A8 'Controversies over 9:128-129' on p.452
+formatted.gsub!(/^9\|12[89]\|.*?\n/m,'')  # non-greedy, multiline
+
+
 puts formatted
