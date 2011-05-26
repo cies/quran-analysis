@@ -40,6 +40,8 @@ h3. TODO: TOWARDS A CONSOLE
  * maybe a class that colors numbers green if they are a multiple of 19
  * a method to romanize arabic: it's so hard to read for me (alternating LtoR/RtoL)
  * move all extentions into a +core_ext+ folder (refer to +awesome_print+)
+ * make a small introduction to using these scripts in the README
+
 
 h2. TADA
 

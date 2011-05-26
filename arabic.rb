@@ -8,7 +8,10 @@
 
 module Arabic
 
-  # All information on the arabic alphabet
+  # The arabic alphabet as used in the Quran
+  # The unicode characters used here are the general ones.
+  # There are also contextual forms as seen here:
+  # http://en.wikipedia.org/wiki/Arabic_(Unicode_block)
   ALPHABET = {
     alif:  ["ا", "A", 1],
     ba:    ["ب", "B", 2],
@@ -41,13 +44,19 @@ module Arabic
   }
 
   ARABIC_TO_LATIN = (a2l={}; ALPHABET.each_pair{|k,v| a2l[v[0]]=v[1]}; a2l).freeze
+
+  # we only consider the original 28 arabic letters that where used when
+  # the Quran was written down, added to that we allow: space, newline,
+  # pipe and the western numbers
+  VALID_CHARS = (ALPHABET.map{|k,v| k=v[0]} + ["|"," ","\n"] + (0..9).to_a.map(&:to_s)).freeze
 end
 
 
 class String
   def arabic_to_latin
-    Arabic::ARABIC_TO_LATIN.each_pair { |k, v| self.gsub!(k, v) }
-    self
+    new_str = self.dup
+    Arabic::ARABIC_TO_LATIN.each_pair { |k, v| new_str.gsub!(/#{k}/m, v) }
+    new_str
   end
   alias :to_l :arabic_to_latin
 end

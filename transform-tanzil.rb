@@ -20,8 +20,8 @@ end
 # We do keep the tanzil.net file format.
 
 
-# BISMALLAH = open(ARGV[0]).lines.first.chomp.split('|').last.freeze
-BISMALLAH = "بسم الله الرحمن الرحيم"
+require "./quran.rb"
+BISMALLAH = Quran::BISMALLAH
 
 formatted = ''
 open(ARGV[0]).each_line do |l|
@@ -52,6 +52,28 @@ end
 # The reasons for this are outlined Edip Yuksel's book 'Nineteen'
 # in chapter A8 'Controversies over 9:128-129' on p.452
 formatted.gsub!(/^9\|12[89]\|.*?\n/m,'')  # non-greedy, multiline
+
+p formatted.class
+p formatted.size
+
+# TODO: the following characters are not part of Arabic::VALID_CHARS, but to occur:
+# {"إ"=>5105, "أ"=>9118, "ى"=>2592, "ؤ"=>672, "ة"=>2344, "آ"=>1511, "ئ"=>1182, "ء"=>1576}  # occurences
+# {"إ"=>0x625, "أ"=>0x623, "ى"=>0x649, "ؤ"=>0x624, "ة"=>0x629, "آ"=>0x622, "ئ"=>0x626, "ء"=>0x621}  # unicode point
+# maybe the complex alifs ("ﺇ","ﺃ","ﺁ","ﻯ") should be converted to an simple alif
+# and "ﺅ"=>:waw
+# "ﺓ"=> is a ta-mabuta (see wikipedia), should chekc what to do with this
+# "ﺉ"=> is an :alif or a :ya
+# "ﺀ"=> is an :alif or should be omitted
+
+formatted.gsub!("\u{625}", Arabic::ALPHABET[:alif][0])
+formatted.gsub!("\u{623}", Arabic::ALPHABET[:alif][0])
+formatted.gsub!("\u{622}", Arabic::ALPHABET[:alif][0])
+formatted.gsub!("\u{629}", Arabic::ALPHABET[:ha][0])
+formatted.gsub!("\u{649}", Arabic::ALPHABET[:ya][0])
+formatted.gsub!("\u{626}", Arabic::ALPHABET[:ya][0])
+formatted.gsub!("\u{624}", Arabic::ALPHABET[:waw][0])
+formatted.gsub!("\u{621}", '')
+
 
 
 puts formatted
