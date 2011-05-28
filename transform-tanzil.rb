@@ -7,7 +7,7 @@ unless ARGV[0]
   puts "    * http://tanzil.net/download/"
   puts "    * Simple clean"
   puts "    * No 'Includes'"
-  puts "    * Fie format: 'Text (with aya numbers)'"
+  puts "    * Fie format: 'Text (with verse numbers)'"
   exit
 end
 
@@ -28,13 +28,13 @@ open(ARGV[0]).each_line do |l|
 
   # all lines that have:
   #   1. a bismallah,
-  #   2. are 1st lines of a sura, and
-  #   3. are not from the first sura
-  # these lines should split out a zero-bismallah aya like yuksel's
+  #   2. are 1st lines of a chapter, and
+  #   3. are not from the first chapter
+  # these lines should split out a zero-bismallah verse like yuksel's
   pre_strip = ''
   if l.match(BISMALLAH) and l =~ /\|1\|/ and not l[0..1] == '1|'
-    sura = l[/^\d+/]
-    formatted << "#{sura}|0|#{BISMALLAH}\n"
+    chapter = l[/^\d+/]
+    formatted << "#{chapter}|0|#{BISMALLAH}\n"
     pre_strip = l.gsub(BISMALLAH,'')
   else
     pre_strip = l
@@ -48,7 +48,7 @@ open(ARGV[0]).each_line do |l|
 
 end
 
-# Remove aya 128 and 129 from sura 9
+# Remove verse 128 and 129 from chapter 9
 # The reasons for this are outlined Edip Yuksel's book 'Nineteen'
 # in chapter A8 'Controversies over 9:128-129' on p.452
 formatted.gsub!(/^9\|12[89]\|.*?\n/m,'')  # non-greedy, multiline

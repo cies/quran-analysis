@@ -13,7 +13,7 @@ Currently I know of several types of intriguing numerical properties:
  * letter counts
  * numerical values of words
 
-Often these properies show by dividing resulting numbers by 19.  In sura 74 the 30th verse reads "Over it are nineteen", many see this as a hint that nineteen is of special significance to the book.  We can see 1 as the first and 9 as the last number of a decimal system, thereby 1-9 to a decimal system is like alpha-omega to he Greek alphabet.  In the New Testament's book of revelation we find several references to this conjunction of alpha and omega.
+Often these properies show by dividing resulting numbers by 19.  In chapter 74 the 30th verse reads "Over it are nineteen", many see this as a hint that nineteen is of special significance to the book.  We can see 1 as the first and 9 as the last number of a decimal system, thereby 1-9 to a decimal system is like alpha-omega to he Greek alphabet.  In the New Testament's book of revelation we find several references to this conjunction of alpha and omega.
 
 I do not subscribe to all of the claims people make about numeric analyses of the Qur'an.  I do feel some of properties are miraculous, yet I found them often hard to reproduce or ambiguously formulated.  My goal for this project is to make it extremely easy to replicate the analyses by anyone with basic programming skills.  Besides that I think programming languages -- being extremely formal compared to human laguages -- are particularly suitable to formulate the analyses.
 
@@ -35,7 +35,7 @@ h2. TODO
 h3. TODO: TOWARDS A CONSOLE
 
  * a Quran class work be nice, it should be possible to conviently query and search through it.
- * queries could return a query object that can then be formatted to needs (w/-or-w/o words/sura/aya/etc.)
+ * queries could return a query object that can then be formatted to needs (w/-or-w/o words/chapter/verse/etc.)
  * some extentions to the String class would make our life easier
  * maybe a class that colors numbers green if they are a multiple of 19
  * a method to romanize arabic: it's so hard to read for me (alternating LtoR/RtoL)
@@ -51,6 +51,11 @@ h2. TADA
  * start a github project, sharing my efforts with a greater audience
  * added scripts that transform the original Quran texts (currently only Edip Yuksel's and the cleanest version of the tanzil.net texts are considered)
  *
+
+
+h2. QUESTIONS
+ * why do some chapters have a line allocated for the initials and some dont?
+
 
 h2. LICENSE
 

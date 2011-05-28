@@ -15,10 +15,10 @@ class Quran
 
   attr_accessor :file_name
   attr_accessor :text
-  attr_accessor :numbered_text  # text as one big string exluding 0-ayas
+  attr_accessor :numbered_text  # text as one big string exluding 0-verses
 
-  # Letter sequences and the suras that they occure in front of.
-  INITIALS_AND_SURAS = {
+  # Letter sequences and the chapters that they occure in front of.
+  INITIALS_AND_chapterS = {
     [:alif, :lam, :mim] => [2, 3] + (29..31).to_a,
     [:alif, :lam, :mim, :sad] => [7],
     [:alif, :lam, :ra] => (10..15).to_a - [13],
@@ -35,25 +35,27 @@ class Quran
     [:nun] => [68]
   }
 
-  # Fill up a hash (sura_nr => sura_txt) from the quran file as supplied.
+  # Fill up a hash (chapter_nr => chapter_txt) from the quran file as supplied.
   # The file has to be in the zekr.org project format.  each line conforms:
-  #   <sura_nr>|<aya_nr>|<aya_text>
+  #   <chapter_nr>|<verse_nr>|<verse_text>
   # i.e.:
   #   19|19|قَالَ إِنَّمَا أَنَا رَسُولُ رَبِّكِ لِأَهَبَ لَكِ غُلَامًا زَكِيًّا
   def initialize(file_name=DEFAULT_QURAN_FILE)
     puts "Cannot read '#{file_name}'. Exitting." and exit unless File.stat(file_name).readable?
     @file_name = file_name
     @quran = Hash[(1..114).to_a.map{|e| e = [e, {}]}]  # { 1=>{}, 2=>{}, ..., 114=>{} }
+    @verses = {}  # { "1:0" => "...", "1:1" => "...", ... }
     @text = ''
     @numbered_text = ''
     open(file_name).each_line do |l|
       if l.scan('|').size == 2
-        sura, aya, txt = l.split('|')
-        @quran[sura.to_i][aya.to_i] = txt.strip
-        @text << "#{sura}|#{aya}|#{txt.strip}\n"
-        if aya.to_i > 0
+        chapter_nr, verse_nr, txt = l.split('|')
+        @quran[chapter_nr.to_i][verse_nr.to_i] = txt.strip
+        @verses[chapter_nr+':'+verse_nr] = ' '+txt.strip+' '  # padded
+        @text << "#{chapter_nr}|#{verse_nr}|#{txt.strip}\n"
+        if verse_nr.to_i > 0
           # txt is padded with space for easy-word-boundry-by-space find
-          @numbered_text << "#{sura}|#{aya}| #{txt.strip} \n"
+          @numbered_text << "#{chapter_nr}|#{verse_nr}| #{txt.strip} \n"
         end
       end
     end
@@ -63,37 +65,52 @@ class Quran
     @quran[key]
   end
 
-  def suras
+  def chapters
     @quran
   end
 
-  def aya(str)
-    sura_nr, aya_nr = str.split(':')
-    # p [sura_nr, aya_nr]
-    @quran[sura_nr.to_i][aya_nr.to_i]
+  def verses
+    @verses
+  end
+
+  def verse(str)
+    chapter_nr, verse_nr = str.split(':')
+    @quran[chapter_nr.to_i][verse_nr.to_i]
   end
 
   def count_in_numbered_text_with(strings)
     count = 0
     strings = [strings] if strings.class == String
     strings.each do |str|
-      count += @numbered_text.scan(" #{str} ").size
-      @numbered_text.scan(/$\s#{str}\s\n/m) { |l| p l }
+      count += @numbered_text.scan(/ #{str}(?= )/).size
     end
     count
   end
 
-  def find_ayas_in_numbered_text_with(strings)
+  def find_verses_with(strings)
+    count = 0
+    verse_nr_sum = 0
     result = []
     strings = [strings] if strings.class == String
-    strings.each do |str|
-      count += @numbered_text.scan(" #{str} ").size
-      @numbered_text.scan(/$\s#{str}\s\n/m) { |l| p l }
+    verses.each do |address, verse|
+      next if address =~ /\:0$/  # skip zero verses
+      sub_count = 0
+      strings.each do |str|
+        # match the space padded verse
+        # the lookahead is to make sure a space follows,
+        # without consuming it (in case the next word also matches)
+        sub_count += verse.scan(/ #{str}(?= )/).size
+      end
+      if sub_count > 0
+        count += sub_count
+        verse_nr_sum += address.split(':').last.to_i
+        result << [count, address, verse_nr_sum]
+      end
     end
     result
   end
 
-  # def each_sura
+  # def each_chapter
   # end
 
   def inspect

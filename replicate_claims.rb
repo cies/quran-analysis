@@ -33,21 +33,21 @@ puts "=> loaded '#{q.file_name}'"
 # first some generic tests
 describe "The text we are considering:" do
 
-  it "has all sura except 9 start with the 'bismallah' (and check 1st aya nr)" do
-    q.suras.each_pair do |sura_nr, sura|
-      first_aya_nr = sura.keys.sort.first
-      first_aya = sura[first_aya_nr]
-      case sura_nr
+  it "has all chapter except 9 start with the 'bismallah' (and check 1st verse nr)" do
+    q.chapters.each_pair do |chapter_nr, chapter|
+      first_verse_nr = chapter.keys.sort.first
+      first_verse = chapter[first_verse_nr]
+      case chapter_nr
       when 1
         # TODO: find out if this is on purpose
-        first_aya_nr.should == 1
-        first_aya.should == Quran::BISMALLAH
+        first_verse_nr.should == 1
+        first_verse.should == Quran::BISMALLAH
       when 9
-        first_aya_nr.should == 1
-        first_aya.should_not =~ /#{Quran::BISMALLAH}/
+        first_verse_nr.should == 1
+        first_verse.should_not =~ /#{Quran::BISMALLAH}/
       else
-        first_aya_nr.should == 0
-        first_aya.should == Quran::BISMALLAH
+        first_verse_nr.should == 0
+        first_verse.should == Quran::BISMALLAH
       end
     end
   end
@@ -60,15 +60,15 @@ end
 
 describe "Number 19 related claims:" do
 
-  it "has  number of suras (#{q.suras.size}) that is a multiple of 19" do
-    (q.suras.size % 19).should == 0
+  it "has  number of chapters (#{q.chapters.size}) that is a multiple of 19" do
+    (q.chapters.size % 19).should == 0
   end
 
-  it "has 114 (19x6) 'bismallahs': 1:1, 30:27 and in every sura except 1 & 9 on aya 0" do
+  it "has 114 (19x6) 'bismallahs': 1:1, 30:27 and in every chapter except 1 & 9 on verse 0" do
     q[1][1].should == Quran::BISMALLAH
     q[27][30].should =~ /#{Quran::BISMALLAH}/
-    ((2..8).to_a + (10..114).to_a).each do |sura_nr|
-      q[sura_nr][0].should == Quran::BISMALLAH
+    ((2..8).to_a + (10..114).to_a).each do |chapter_nr|
+      q[chapter_nr][0].should == Quran::BISMALLAH
     end
     q[1][0].should be_nil
     q[9][0].should be_nil
@@ -78,11 +78,33 @@ describe "Number 19 related claims:" do
     Quran::BISMALLAH.split.join.size.should == 19
   end
 
-  it "the sura of the missing 'bismallah' and the sura with the double one span over 19 suras" do
+  it "the chapter of the missing 'bismallah' and the chapter with the double one span over 19 chapters" do
     (9..27).to_a.size.should == 19
   end
 
-  it "1st word of 'bismallah', SM, occures 19 times in the numbered text" do
-    q.count_in_numbered_text_with(['اسم', 'بسم', 'الاسم']).should == 19  # ASM, BASM, ALASM
+  describe "Words of the 'bismallah':" do
+
+    specify "1st word 'ism' occures 19 times in the numbered text" do
+      derivatives = Arabic::SPELLINGS_FOR[:ism].map { |w| w = w.map{|l| l = Arabic::ALPHABET[l][0]}.join }
+      q.count_in_numbered_text_with(derivatives).should == 19
+    end
+
+    specify "2nd word 'Allah' occures 19x142 times in the numbered text" do
+      derivatives = Arabic::SPELLINGS_FOR[:allah].map{ |w| w = w.map{|l| l = Arabic::ALPHABET[l][0]}.join }
+      q.count_in_numbered_text_with(derivatives).should == (19*142)
+    end
+
+    specify "3nd word 'rahman' occures 19x3 times in the numbered text" do
+      derivatives = Arabic::SPELLINGS_FOR[:rahman].map{ |w| w = w.map{|l| l = Arabic::ALPHABET[l][0]}.join }
+      q.count_in_numbered_text_with(derivatives).should == (19*3)
+    end
+
+    specify "4nd word 'rahim' occures 19x6 times in the numbered text" do
+      derivatives = Arabic::SPELLINGS_FOR[:rahim].map{ |w| w = w.map{|l| l = Arabic::ALPHABET[l][0]}.join }
+      q.count_in_numbered_text_with(derivatives).should == (19*6)
+    end
+
+
   end
+
 end

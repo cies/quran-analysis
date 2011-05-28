@@ -49,6 +49,33 @@ module Arabic
   # the Quran was written down, added to that we allow: space, newline,
   # pipe and the western numbers
   VALID_CHARS = (ALPHABET.map{|k,v| k=v[0]} + ["|"," ","\n"] + (0..9).to_a.map(&:to_s)).freeze
+
+  SPELLINGS_FOR = {
+    ism: [
+      [:alif, :sin, :mim],
+      [:ba, :alif, :sin, :mim],
+      [:alif, :lam, :alif, :sin, :mim] ],
+    allah: [
+      [:alif, :lam, :lam, :ha],
+      [:waw, :alif, :lam, :lam, :ha],
+      [:ba, :alif, :lam, :lam, :ha],
+      [:fa, :lam, :lam, :ha],
+      [:fa, :alif, :lam, :lam, :ha],
+      [:ta, :alif, :lam, :lam, :ha],
+      [:waw, :lam, :lam, :ha],
+      [:waw, :ta, :alif, :lam, :lam, :ha],
+      [:alif, :ba, :alif, :lam, :lam, :ha],
+      [:lam, :lam, :ha] ],
+    rahman: [
+      [:alif, :lam, :ra, :hha, :mim, :nun],
+      [:ba, :alif, :lam, :ra, :hha, :mim, :nun],
+      [:lam, :lam, :ra, :hha, :mim, :nun] ],
+    rahim: [
+      [:alif, :lam, :ra, :hha, :ya, :mim],
+      [:ra, :hha, :ya, :mim],
+      [:ra, :hha, :ya, :mim, :alif] ]
+  }
+
 end
 
 
@@ -59,6 +86,10 @@ class String
     new_str
   end
   alias :to_l :arabic_to_latin
+
+  def to_hex_a
+    unpack("U*").map{|e| e = e.to_s(16)}
+  end
 end
 
 
