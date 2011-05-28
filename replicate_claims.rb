@@ -26,8 +26,9 @@ orig_argv = ARGV.dup
 (%w(-c -f d) + orig_argv[1..-1]).inject(ARGV.clear, :<<)
 
 
-puts "== Replication of claims of intriguing numeric properties of the Quran"
-puts "=> loaded '#{q.file_name}'"
+$stderr.puts
+$stderr.puts "== Replicating claims of intriguing numeric properties of the Quran"
+$stderr.puts "=> loaded '#{q.file_name}'"
 
 
 # first some generic tests
