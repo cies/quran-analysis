@@ -1,0 +1,422 @@
+== Replication of claims of intriguing numeric properties of the Quran
+=> loaded './yuksel-transformed.txt'
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>RSpec results</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Expires" content="-1" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <style type="text/css">
+  body {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    font-size: 80%;
+  }
+  </style>
+  <script type="text/javascript">
+    // <![CDATA[
+
+function addClass(element_id, classname) {
+  document.getElementById(element_id).className += (" " + classname);
+}
+
+function removeClass(element_id, classname) {
+  var elem = document.getElementById(element_id);
+  var classlist = elem.className.replace(classname,'');
+  elem.className = classlist;
+}
+
+function moveProgressBar(percentDone) {
+  document.getElementById("rspec-header").style.width = percentDone +"%";
+}
+
+function makeRed(element_id) {
+  removeClass(element_id, 'passed');
+  removeClass(element_id, 'not_implemented');
+  addClass(element_id,'failed');
+}
+
+function makeYellow(element_id) {
+  var elem = document.getElementById(element_id);
+  if (elem.className.indexOf("failed") == -1) {  // class doesn't includes failed
+    if (elem.className.indexOf("not_implemented") == -1) { // class doesn't include not_implemented
+      removeClass(element_id, 'passed');
+      addClass(element_id,'not_implemented');
+    }
+  }
+}
+
+function apply_filters() {
+  var passed_filter = document.getElementById('passed_checkbox').checked;
+  var failed_filter = document.getElementById('failed_checkbox').checked;
+  var pending_filter = document.getElementById('pending_checkbox').checked;
+
+  assign_display_style("example passed", passed_filter);
+  assign_display_style("example failed", failed_filter);
+  assign_display_style("example not_implemented", pending_filter);
+
+  assign_display_style_for_group("example_group passed", passed_filter);
+  assign_display_style_for_group("example_group not_implemented", pending_filter, pending_filter || passed_filter);
+  assign_display_style_for_group("example_group failed", failed_filter, failed_filter || pending_filter || passed_filter);
+}
+
+function get_display_style(display_flag) {
+  var style_mode = 'none';
+  if (display_flag == true) {
+    style_mode = 'block';
+  }
+  return style_mode;
+}
+
+function assign_display_style(classname, display_flag) {
+  var style_mode = get_display_style(display_flag);
+  var elems = document.getElementsByClassName(classname)
+  for (var i=0; i<elems.length;i++) {
+    elems[i].style.display = style_mode;
+  }
+}
+
+function assign_display_style_for_group(classname, display_flag, subgroup_flag) {
+  var display_style_mode = get_display_style(display_flag);
+  var subgroup_style_mode = get_display_style(subgroup_flag);
+  var elems = document.getElementsByClassName(classname)
+  for (var i=0; i<elems.length;i++) {
+    var style_mode = display_style_mode;
+    if ((display_flag != subgroup_flag) && (elems[i].getElementsByTagName('dt')[0].innerHTML.indexOf(", ") != -1)) {
+      elems[i].style.display = subgroup_style_mode;
+    } else {
+      elems[i].style.display = display_style_mode;
+    }
+  }
+}
+
+    // ]]>
+  </script>
+  <style type="text/css">
+#rspec-header {
+  background: #65C400; color: #fff; height: 4em;
+}
+
+.rspec-report h1 {
+  margin: 0px 10px 0px 10px;
+  padding: 10px;
+  font-family: "Lucida Grande", Helvetica, sans-serif;
+  font-size: 1.8em;
+  position: absolute;
+}
+
+#label {
+  float:left;
+}
+
+#display-filters {
+  float:left;
+  padding: 28px 0 0 40%;
+  font-family: "Lucida Grande", Helvetica, sans-serif;
+}
+
+#summary {
+  float:right;
+  padding: 5px 10px;
+  font-family: "Lucida Grande", Helvetica, sans-serif;
+  text-align: right;
+}
+
+#summary p {
+  margin: 0 0 0 2px;
+}
+
+#summary #totals {
+  font-size: 1.2em;
+}
+
+.example_group {
+  margin: 0 10px 5px;
+  background: #fff;
+}
+
+dl {
+  margin: 0; padding: 0 0 5px;
+  font: normal 11px "Lucida Grande", Helvetica, sans-serif;
+}
+
+dt {
+  padding: 3px;
+  background: #65C400;
+  color: #fff;
+  font-weight: bold;
+}
+
+dd {
+  margin: 5px 0 5px 5px;
+  padding: 3px 3px 3px 18px;
+}
+
+
+dd.example.passed {
+  border-left: 5px solid #65C400;
+  border-bottom: 1px solid #65C400;
+  background: #DBFFB4; color: #3D7700;
+}
+
+dd.example.not_implemented {
+  border-left: 5px solid #FAF834;
+  border-bottom: 1px solid #FAF834;
+  background: #FCFB98; color: #131313;
+}
+
+dd.example.pending_fixed {
+  border-left: 5px solid #0000C2;
+  border-bottom: 1px solid #0000C2;
+  color: #0000C2; background: #D3FBFF;
+}
+
+dd.example.failed {
+  border-left: 5px solid #C20000;
+  border-bottom: 1px solid #C20000;
+  color: #C20000; background: #FFFBD3;
+}
+
+
+dt.not_implemented {
+  color: #000000; background: #FAF834;
+}
+
+dt.pending_fixed {
+  color: #FFFFFF; background: #C40D0D;
+}
+
+dt.failed {
+  color: #FFFFFF; background: #C40D0D;
+}
+
+
+#rspec-header.not_implemented {
+  color: #000000; background: #FAF834;
+}
+
+#rspec-header.pending_fixed {
+  color: #FFFFFF; background: #C40D0D;
+}
+
+#rspec-header.failed {
+  color: #FFFFFF; background: #C40D0D;
+}
+
+
+.backtrace {
+  color: #000;
+  font-size: 12px;
+}
+
+a {
+  color: #BE5C00;
+}
+
+/* Ruby code, style similar to vibrant ink */
+.ruby {
+  font-size: 12px;
+  font-family: monospace;
+  color: white;
+  background-color: black;
+  padding: 0.1em 0 0.2em 0;
+}
+
+.ruby .keyword { color: #FF6600; }
+.ruby .constant { color: #339999; }
+.ruby .attribute { color: white; }
+.ruby .global { color: white; }
+.ruby .module { color: white; }
+.ruby .class { color: white; }
+.ruby .string { color: #66FF00; }
+.ruby .ident { color: white; }
+.ruby .method { color: #FFCC00; }
+.ruby .number { color: white; }
+.ruby .char { color: white; }
+.ruby .comment { color: #9933CC; }
+.ruby .symbol { color: white; }
+.ruby .regex { color: #44B4CC; }
+.ruby .punct { color: white; }
+.ruby .escape { color: white; }
+.ruby .interp { color: white; }
+.ruby .expr { color: white; }
+
+.ruby .offending { background-color: gray; }
+.ruby .linenum {
+  width: 75px;
+  padding: 0.1em 1em 0.2em 0;
+  color: #000000;
+  background-color: #FFFBD3;
+}
+
+  </style>
+</head>
+<body>
+<div class="rspec-report">
+
+<div id="rspec-header">
+  <div id="label">
+    <h1>RSpec Code Examples</h1>
+  </div>
+
+  <div id="display-filters">
+    <input id="passed_checkbox" name="passed_checkbox" type="checkbox" checked onchange="apply_filters()" value="1"> <label for="passed_checkbox">Passed</label>
+    <input id="failed_checkbox" name="failed_checkbox" type="checkbox" checked onchange="apply_filters()" value="2"> <label for="failed_checkbox">Failed</label>
+    <input id="pending_checkbox" name="pending_checkbox" type="checkbox" checked onchange="apply_filters()" value="3"> <label for="pending_checkbox">Pending</label>
+  </div>
+
+  <div id="summary">
+    <p id="totals">&nbsp;</p>
+    <p id="duration">&nbsp;</p>
+  </div>
+</div>
+
+
+<div class="results">
+
+The text we are considering:
+<div id="div_group_1" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_1" class="passed">The text we are considering:</dt>
+  has all chapters except 9 start with the 'bismallah' (and check 1st verse nr)
+    <script type="text/javascript">moveProgressBar('4.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">has all chapters except 9 start with the 'bismallah' (and check 1st verse nr)</span></dd>
+  does not contain the disputed 9:128-129
+    <script type="text/javascript">moveProgressBar('8.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">does not contain the disputed 9:128-129</span></dd>
+  spells 'bastata' in 7:69 with the letter 'sad'
+    <script type="text/javascript">moveProgressBar('12.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">spells 'bastata' in 7:69 with the letter 'sad'</span></dd>
+
+The Quran and the number 19:
+  </dl>
+</div>
+<div id="div_group_2" class="example_group passed">
+  <dl style="margin-left: 0px;">
+  <dt id="example_group_2" class="passed">The Quran and the number 19:</dt>
+  the number of chapters (114) is a multiple of 19
+    <script type="text/javascript">moveProgressBar('16.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">the number of chapters (114) is a multiple of 19</span></dd>
+  114 (19x6) 'bismallahs': 1:1, 30:27 and in every chapter except 1 & 9 on verse 0
+    <script type="text/javascript">moveProgressBar('20.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">114 (19x6) 'bismallahs': 1:1, 30:27 and in every chapter except 1 &amp; 9 on verse 0</span></dd>
+  the 'bismallah' sentence consists of 19 letters
+    <script type="text/javascript">moveProgressBar('24.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">the 'bismallah' sentence consists of 19 letters</span></dd>
+  the chapter of the missing 'bismallah' and the chapter with the double one span over 19 chapters
+    <script type="text/javascript">moveProgressBar('28.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">the chapter of the missing 'bismallah' and the chapter with the double one span over 19 chapters</span></dd>
+  the gematrical values of the letters forming the 'bismallah' together with their index numbers form patterns that add up to multiples of 19 (PENDING: Not Yet Implemented)
+    <script type="text/javascript">makeYellow('rspec-header');</script>
+    <script type="text/javascript">makeYellow('div_group_2');</script>
+    <script type="text/javascript">makeYellow('example_group_2');</script>
+    <script type="text/javascript">moveProgressBar('32.0');</script>
+    <dd class="example not_implemented"><span class="not_implemented_spec_name">the gematrical values of the letters forming the 'bismallah' together with their index numbers form patterns that add up to multiples of 19 (PENDING: Not Yet Implemented)</span></dd>
+  all the verses, including unnumbered 'bismallah', add up to 6346 (=19x334=6+3+4+6)
+    <script type="text/javascript">moveProgressBar('36.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">all the verses, including unnumbered 'bismallah', add up to 6346 (=19x334=6+3+4+6)</span></dd>
+  Words of the 'bismallah':
+  </dl>
+</div>
+<div id="div_group_3" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_3" class="passed">Words of the 'bismallah':</dt>
+    1st word 'ism' occures 19x1 times in the numbered text
+    <script type="text/javascript">moveProgressBar('40.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">1st word 'ism' occures 19x1 times in the numbered text</span></dd>
+    2nd word 'Allah' occures 19x142 times in the numbered text
+    <script type="text/javascript">moveProgressBar('44.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">2nd word 'Allah' occures 19x142 times in the numbered text</span></dd>
+    3nd word 'rahman' occures 19x3 times in the numbered text
+    <script type="text/javascript">moveProgressBar('48.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">3nd word 'rahman' occures 19x3 times in the numbered text</span></dd>
+    4nd word 'rahim' occures 19x6 times in the numbered text
+    <script type="text/javascript">moveProgressBar('52.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">4nd word 'rahim' occures 19x6 times in the numbered text</span></dd>
+    the multiplication factors of the word frequencies add up to 152 (19x8)
+    <script type="text/javascript">moveProgressBar('56.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">the multiplication factors of the word frequencies add up to 152 (19x8)</span></dd>
+  Counting initial letters in the chapters they prefix
+  </dl>
+</div>
+<div id="div_group_4" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_4" class="passed">Counting initial letters in the chapters they prefix</dt>
+    'qaf' affixes chapter 42 and 50, and occures 19x3 times in each of those chapters
+    <script type="text/javascript">moveProgressBar('60.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">'qaf' affixes chapter 42 and 50, and occures 19x3 times in each of those chapters</span></dd>
+    'sad' affixes chapters 7, 19 and 38, and occures 19x8 times in those chapters together
+    <script type="text/javascript">moveProgressBar('64.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">'sad' affixes chapters 7, 19 and 38, and occures 19x8 times in those chapters together</span></dd>
+    'hha' and 'mim' affix chapters 40 to 46, and occure a combined total of 19x113 times
+    <script type="text/javascript">moveProgressBar('68.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">'hha' and 'mim' affix chapters 40 to 46, and occure a combined total of 19x113 times</span></dd>
+    'ayn', 'sin' and 'qaf' affix chapter 42, and occure 19x11 times therein
+    <script type="text/javascript">moveProgressBar('72.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">'ayn', 'sin' and 'qaf' affix chapter 42, and occure 19x11 times therein</span></dd>
+    'kaf', 'ha', 'ya', 'ayn' and 'sad' affix chapter 19, and occure 19x42 times therein
+    <script type="text/javascript">moveProgressBar('76.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">'kaf', 'ha', 'ya', 'ayn' and 'sad' affix chapter 19, and occure 19x42 times therein</span></dd>
+    'nun' affixes chapter 68 (spelled out as NWN), and occures 19x7 times therein
+    <script type="text/javascript">moveProgressBar('80.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">'nun' affixes chapter 68 (spelled out as NWN), and occures 19x7 times therein</span></dd>
+    'ya' and 'sin' affix chapter 36, and occure 19x15 times therein
+    <script type="text/javascript">moveProgressBar('84.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">'ya' and 'sin' affix chapter 36, and occure 19x15 times therein</span></dd>
+    there are 19x6 (114) verses that contain all 14 initial letters
+    <script type="text/javascript">moveProgressBar('88.0');</script>
+    <dd class="example passed"><span class="passed_spec_name">there are 19x6 (114) verses that contain all 14 initial letters</span></dd>
+  The numbers used in the Quran...
+  </dl>
+</div>
+<div id="div_group_5" class="example_group passed">
+  <dl style="margin-left: 15px;">
+  <dt id="example_group_5" class="passed">The numbers used in the Quran...</dt>
+    ...form a unique set of 19x2 (PENDING: Not Yet Implemented)
+    <script type="text/javascript">makeYellow('rspec-header');</script>
+    <script type="text/javascript">makeYellow('div_group_5');</script>
+    <script type="text/javascript">makeYellow('example_group_5');</script>
+    <script type="text/javascript">moveProgressBar('92.0');</script>
+    <dd class="example not_implemented"><span class="not_implemented_spec_name">...form a unique set of 19x2 (PENDING: Not Yet Implemented)</span></dd>
+    ...occure a combined total of 19x16 times (PENDING: Not Yet Implemented)
+    <script type="text/javascript">makeYellow('rspec-header');</script>
+    <script type="text/javascript">makeYellow('div_group_5');</script>
+    <script type="text/javascript">makeYellow('example_group_5');</script>
+    <script type="text/javascript">moveProgressBar('96.0');</script>
+    <dd class="example not_implemented"><span class="not_implemented_spec_name">...occure a combined total of 19x16 times (PENDING: Not Yet Implemented)</span></dd>
+    ...all integers total to 19x8534 (PENDING: Not Yet Implemented)
+    <script type="text/javascript">makeYellow('rspec-header');</script>
+    <script type="text/javascript">makeYellow('div_group_5');</script>
+    <script type="text/javascript">makeYellow('example_group_5');</script>
+    <script type="text/javascript">moveProgressBar('100.0');</script>
+    <dd class="example not_implemented"><span class="not_implemented_spec_name">...all integers total to 19x8534 (PENDING: Not Yet Implemented)</span></dd>
+  </dl>
+</div>
+
+Pending:
+  The Quran and the number 19: the gematrical values of the letters forming the 'bismallah' together with their index numbers form patterns that add up to multiples of 19
+    # Not Yet Implemented
+    # ./replicate_claims.rb:90
+  The Quran and the number 19: The numbers used in the Quran... ...form a unique set of 19x2
+    # Not Yet Implemented
+    # ./replicate_claims.rb:191
+  The Quran and the number 19: The numbers used in the Quran... ...occure a combined total of 19x16 times
+    # Not Yet Implemented
+    # ./replicate_claims.rb:192
+  The Quran and the number 19: The numbers used in the Quran... ...all integers total to 19x8534
+    # Not Yet Implemented
+    # ./replicate_claims.rb:193
+
+Finished in 1.66 seconds
+25 examples, 0 failures, 4 pending
+<script type="text/javascript">document.getElementById('duration').innerHTML = "Finished in <strong>1.659605992 seconds</strong>";</script>
+<script type="text/javascript">document.getElementById('totals').innerHTML = "25 examples, 0 failures, 4 pending";</script>
+</div>
+</div>
+</body>
+</html>
