@@ -18,7 +18,8 @@ class Quran
   attr_accessor :numbered_text  # text as one big string exluding 0-verses
 
   # Letter sequences and the chapters that they occure in front of.
-  INITIALS_AND_chapterS = {
+  ALL_INITIALS = [:alif, :lam, :mim, :sad, :ra, :kaf, :ha, :ya, :ayn, :tah, :sin, :hha, :qaf, :nun]
+  INITIALS_AND_CHAPTERS = {
     [:alif, :lam, :mim] => [2, 3] + (29..31).to_a,
     [:alif, :lam, :mim, :sad] => [7],
     [:alif, :lam, :ra] => (10..15).to_a - [13],
@@ -76,6 +77,18 @@ class Quran
   def verse(str)
     chapter_nr, verse_nr = str.split(':')
     @quran[chapter_nr.to_i][verse_nr.to_i]
+  end
+
+  def count_letters_in_chapter(chapter_nr, letters)
+    letters = [letters] if letters.class == Symbol
+    count = 0
+    @quran[chapter_nr].each_pair do |verse_nr, verse_txt|
+      # next if verse_nr == 0    -- do not exclude the bismallahs
+      letters.each do |letter|
+        count += verse_txt.scan(Arabic::ALPHABET[letter][0]).size
+      end
+    end
+    count
   end
 
   def count_in_numbered_text_with(strings)

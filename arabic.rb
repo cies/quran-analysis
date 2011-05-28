@@ -92,4 +92,8 @@ class String
   end
 end
 
-
+class Array
+  def symbols_to_arabic
+    self.map{ |sym| Arabic::ALPHABET[sym][0] }.join
+  end
+end

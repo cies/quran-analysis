@@ -55,7 +55,9 @@ h2. TADA
 
 h2. QUESTIONS
  * why do some chapters have a line allocated for the initials and some dont?
-
+ * why is the first bismallah not put on 1:0 while the others are
+ * it seems that revised initial counts on submission.org yield more 19 claims than you made in your book -- why?
+ *
 
 h2. LICENSE
 
