@@ -23,6 +23,32 @@ h2. DISCLAIMER
 I, Cies Breijs, am working on this project for personal reasons and not as part of any organization.  It is simply my effort to replicate claims that intrigue me in a way that whould allow others to replicate them as easy as running a piece of software, and allow the study of their procedures in a formal language.
 
 
+h2. INSTALLING AND USING
+
+This software is written 100% in the "Ruby prgramming language":http://ruby-lang.org . The language is open source and free for eny to use, it most important quality is that it often read like English thereby being very to-the-point and programmer friendly.
+
+To use this software you simply "install Ruby":http://www.ruby-lang.org/en/downloads and download this software (you find the download button in the upper right corner of the "project page":https://github.com/cies/quran-analysis ).  You can use either Linux, Mac OSX or Windows -- though Linux and Mac OSX work a lot easier.
+
+In Ruby land we can install libraries with the @gem@ command.  Currently we only need one library for the @replicate-claims.rb@ script, it is call @RSpec@ and can be installed with:
+
+  gem install rspec
+
+The @gem@ command should come with most installations of Ruby these days (if not try to install a 1.9+ version of Ruby).
+
+Currently this proejct comes with the following commands:
+
+  replicate_claims.rb
+  console.rb
+  transform-yuksel.rb
+  transform-tanzil.rb
+
+There also exists a @Rakefile@ to generate the @html@ outputs, you can invoke it by executing @rake@ from within the project folder.
+
+The project also ships with to non-executable files, @quran.rb@ and @arabic.rb@, they are heavily used by the executables.
+
+Good luck intalling and playing with this project.
+
+
 h2. TODO
 
  * send out requests for code of previous attempts to write software replicating the analyses

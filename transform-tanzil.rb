@@ -53,9 +53,6 @@ end
 # in chapter A8 'Controversies over 9:128-129' on p.452
 formatted.gsub!(/^9\|12[89]\|.*?\n/m,'')  # non-greedy, multiline
 
-p formatted.class
-p formatted.size
-
 # TODO: the following characters are not part of Arabic::VALID_CHARS, but to occur:
 # {"إ"=>5105, "أ"=>9118, "ى"=>2592, "ؤ"=>672, "ة"=>2344, "آ"=>1511, "ئ"=>1182, "ء"=>1576}  # occurences
 # {"إ"=>0x625, "أ"=>0x623, "ى"=>0x649, "ؤ"=>0x624, "ة"=>0x629, "آ"=>0x622, "ئ"=>0x626, "ء"=>0x621}  # unicode point
