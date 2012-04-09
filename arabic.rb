@@ -73,7 +73,23 @@ module Arabic
     rahim: [
       [:alif, :lam, :ra, :hha, :ya, :mim],
       [:ra, :hha, :ya, :mim],
-      [:ra, :hha, :ya, :mim, :alif] ]
+      [:ra, :hha, :ya, :mim, :alif] ],
+    yewm: [
+      [:ya, :waw, :mim],
+      [:waw, :ba, :alif, :lam, :ya, :waw, :mim],
+      [:ya, :waw, :mim, :alif],
+      [:alif, :lam, :ya, :waw, :mim],
+      [:waw, :ya, :waw, :mim],
+      [:waw, :alif, :lam, :ya, :waw, :mim],
+      [:lam, :ya, :waw, :mim],
+      [:ya, :waw, :mim, :ya, :dhal],
+      [:ba, :alif, :lam, :ya, :waw, :mim],
+      [:ya, :waw, :mim, :kaf, :mim],
+      [:ya, :waw, :mim, :ha, :mim],
+
+      # [ :ya, :waw, :mim, :ya, :nun ]  -- days (plurial)
+
+      ],
   }
 
 end
@@ -87,6 +103,22 @@ class String
   end
   alias :to_l :arabic_to_latin
 
+  def arabic_to_gm_array
+    new_str = self.dup.gsub(' ','').split('')  # make into array of letters (no spaces)
+    h = {}
+    Arabic::ALPHABET.values.each {|v| h[v[0]] = v[2]}
+    new_str.map {|x| h[x]}
+  end
+  alias :to_gm :arabic_to_gm_array
+
+  def arabic_to_sym_array
+    new_str = self.dup.gsub(' ','').split('')  # make into array of letters (no spaces)
+    h = {}
+    Arabic::ALPHABET.each {|k,v| h[v[0]] = k}
+    new_str.map {|x| h[x]}
+  end
+  alias :to_syms :arabic_to_sym_array
+
   def to_hex_a
     unpack("U*").map{|e| e = e.to_s(16)}
   end
@@ -95,5 +127,9 @@ end
 class Array
   def symbols_to_arabic
     self.map{ |sym| Arabic::ALPHABET[sym][0] }.join
+  end
+
+  def sum
+    self.reduce{|x,y| x+y}
   end
 end

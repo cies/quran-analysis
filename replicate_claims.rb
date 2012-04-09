@@ -18,7 +18,8 @@ require "./arabic.rb"
 
 # load the Quran
 require "./quran.rb"
-q = ( ARGV[0] == '-' ? Quran.new : Quran.new(ARGV[0]) )
+# q = ( ARGV[0] == '-' ? Quran.new : Quran.new(ARGV[0]) )
+q = Quran.new
 
 # prepend ARGV's elements (except nr 0) with our default RSpec arguments
 require "rspec"
@@ -64,6 +65,17 @@ describe "The text we are considering:" do
 
 end
 
+
+describe "Remarkable word counts" do
+
+  specify "the word day, 'yewm' (and derivatives), occurs a total of 365 times" do
+    derivatives = Arabic::SPELLINGS_FOR[:yewm].map{ |w| w.symbols_to_arabic }
+    q.count_in_numbered_text_with(derivatives)
+  end
+
+end
+
+
 describe "The Quran and the number 19:" do
 
   specify "the number of chapters (#{q.chapters.size}) is a multiple of 19" do
@@ -80,12 +92,40 @@ describe "The Quran and the number 19:" do
     q[9][0].should be_nil
   end
 
+  specify "the first chapter revealed, chapter 96, consists of 19 verses and is the 19th verse from the back" do
+    (q[96].size - 1).should == 19  # compensate for the bismallah
+    (96..114).to_a.size.should == 19
+  end
+
+  specify "the first chapter revealed consists of 304 (19x16) arabic letters" do
+    q[96].values.join(' ').split(' ').join('').length.should == (19*16)
+  end
+
+  specify "the first revelation, 96:1-5, consists of 19 words" do
+    (1..5).map{|x| q[96][x]}.join(' ').split(' ').size.should == 19
+    # last 2 words here sow up as one word on some website... anybody some input on this one?
+  end
+
+  specify "the first revelation, 96:1-5, consists of 76 (19x4) letters" do
+    (1..5).map{|x| q[96][x]}.join.gsub(' ','').length.should == (19*4)
+  end
+
+  specify "the last chapter revealed, chapter 110, has 19 words" do
+    verse_strings = q[110].values[1..-1]  # remove the bismallah whos words do not count as a verse
+    verse_strings.join(' ').split(' ').size.should == 19
+  end
+
+  specify "the first verse of the last chapter revealed, chapter 110, consists of 19 letters" do
+    q[110][1].gsub(' ','').size.should == 19
+  end
+
   specify "the 'bismallah' sentence consists of 19 letters" do
     Quran::BISMALLAH.split.join.size.should == 19
   end
 
-  specify "the chapter of the missing 'bismallah' and the chapter with the double one span over 19 chapters" do
+  specify "the chapter of the missing 'bismallah' and the chapter with the double one span over 19 chapters, and the numbers of those chapters add up to 342 (19x18)" do
     (9..27).to_a.size.should == 19
+    (9..27).to_a.sum.should == (19*18)
   end
 
   specify "the gematrical values of the letters forming the 'bismallah' together with their index numbers form patterns that add up to multiples of 19"
@@ -101,12 +141,69 @@ describe "The Quran and the number 19:" do
     verse_count.should == (19*334)
   end
 
+  specify "the letters of the arabic word for 'one', 'wahd' (واحد), has a geometrical sum of 19" do
+    "واحد".to_gm.sum.should == 19
+  end
+
+  specify "the arabic word 'one', 'wahd' (ﻭﺎﺣﺩ), is used 19 times in reference to God"
+
+  specify "the sum of the chapter and verse numbers of the verse where the word 'one' appears for the 19th time is 361 (19x19)"
+
+  # specify "the sum of the chapter and verse numbers of verses that consist of 19 letters is (572x19)" do
+  #   # i made this one myself, maybe it is worth checking all verses for potential errors that would lead to this
+  #   c = 0
+  #   q.verses.each_pair{|k,v| c += k.split(":").map(&:to_i).sum if v.length == 19  }
+  #   c.should == 572*19
+  # end
+
+  specify "the 30 different natural numbers mentioned in the Quran (without repetitions) total to 162146 (19x8534)" do
+    # the following chart is all over the internet, ofcoure I'd rather string search
+    # through the text; but i'm afraid it will be hard to prove that no other numbers
+    # besides these are mentioned (search for all that looks like number-word)
+    # note: all numbers in the Quran are written out
+    %w{1 7  19 70  1000
+       2 8  20 80  2000
+       3 9  30 99  3000
+       4 10 40 100 5000
+       5 11 50 200 50000
+       6 12 60 300 100000}.map(&:to_i).sum.should == (19*8534)
+  end
+
+  specify "besides the thirty natural numbers, eight fractions are mentions, totalling 38 (19x2)" do
+    # see the previous comment
+    # the fractions are: 1/10, 1/8, 1/6, 1/5, 1/4, 1/3, 1/2 and 2/3
+    ((30+8) % 19).should == 0
+  end
+
+  specify "the first chapter from the beginning with 19 verses is 82. this chapter ends with the word 'Allah', which is the 19th appearance of this word in the numbered text counted from the end." do
+    first_19 = 0
+    q.chapters.keys.sort.each {|x| first_19 = x and break if q[x].size - 1 == 19}
+    first_19.should == 82
+
+    allah_spellings = Arabic::SPELLINGS_FOR[:allah].map{ |w| w.symbols_to_arabic }
+    allah_spellings.include?(q[82][19].split(' ').last).should == true
+
+    count = 0
+    allah_spellings.each do |str|
+      count += (83..114).map{|x| q[x].values.join(' ')}.join(' ').scan(/ #{str}(?= )/).size
+    end
+    actual_count = count - (83..114).to_a.size  # compensate for 'Allah' in the bismallahs
+    (actual_count + 1).should == 19  # add one as we did not yet count the last word 'Allah' of chapter 82 itself
+  end
+
+  # describe "The numbers used in the Quran..." do
+  #   specify "...form a unique set of 19x2"
+  #   specify "...occure a combined total of 19x16 times"
+  #   specify "...all integers total to 19x8534"
+  #   # there are more in Yukel, 2011, p.239 (chapter and verse nr sums, etc)
+  # end
+
 
   describe "Words of the 'bismallah':" do
 
     specify "1st word 'ism' occures 19x1 times in the numbered text" do
       derivatives = Arabic::SPELLINGS_FOR[:ism].map { |w| w.symbols_to_arabic }
-      q.count_in_numbered_text_with(derivatives).should == 19
+      q.count_in_numbered_text_with(derivatives).should == (19*1)
     end
 
     specify "2nd word 'Allah' occures 19x142 times in the numbered text" do
@@ -184,15 +281,6 @@ describe "The Quran and the number 19:" do
       verse_count.should == (19*6)
     end
 
-
-
-  end
-
-  describe "The numbers used in the Quran..." do
-    specify "...form a unique set of 19x2"
-    specify "...occure a combined total of 19x16 times"
-    specify "...all integers total to 19x8534"
-    # there are more in Yukel, 2011, p.239 (chapter and verse nr sums, etc)
   end
 
 end
